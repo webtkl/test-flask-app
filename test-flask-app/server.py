@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from random import randint
 
 
@@ -11,7 +11,8 @@ def hello():
 
 @app.route("/email")
 def email():
-    return "<h1>Hello email!</h1>"
+    return render_template("mail.html", name="Ricsi")
+
 
 @app.route("/random")
 def rand():
@@ -19,8 +20,8 @@ def rand():
 
     s=[]
     for i in range(number):
-        s.append(str(randint(1,9)))
-    return " ".join(s)
+        s.append(randint(1,9))
+    return render_template("randoms.html", numbers=s)
 
 
 if __name__ == "__main__":
